@@ -5,7 +5,12 @@
 [![Docker Ready](https://img.shields.io/badge/Docker-Ready-blue)](https://www.docker.com/)
 [![evannsmc.com](https://img.shields.io/badge/evannsmc.com-Project%20Portfolio-blue)](https://www.evannsmc.com)
 
+Official Documentation for this project [here](https://evannsm.github.io/ws_RTD)
+
 **`RTD-RAX`** is a runtime-assurance extension of Reachability-based Trajectory Design (RTD) that replaces conservative offline reachable sets with fast online safety certification via mixed-monotone reachability ([immrax](https://github.com/gtfactslab/immrax)).
+
+
+
 
 RTD is a provably safe, real-time motion planning framework that precomputes Forward Reachable Sets (FRS) offline and uses them online to optimize for collision-free trajectories. The catch: because high-fidelity models are too expensive for reachable-set computation, RTD uses simplified models and inflates the FRS with worst-case tracking-error bounds. This makes the planner overly conservative — it rejects safe trajectories, triggers unnecessary braking, and cannot handle disturbances (wind, ice, slippage) that weren't anticipated offline.
 
