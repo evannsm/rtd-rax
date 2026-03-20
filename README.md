@@ -5,17 +5,15 @@
 [![Docker Ready](https://img.shields.io/badge/Docker-Ready-blue)](https://www.docker.com/)
 [![evannsmc.com](https://img.shields.io/badge/evannsmc.com-Project%20Portfolio-blue)](https://www.evannsmc.com)
 
-**RTD-RAX** is a Python implementation of Reachability-based Trajectory Design (RTD) augmented with formal reachability verification via [immrax](https://github.com/gtfactslab/immrax).
+**`RTD-RAX`** is a runtime-assurance extension of Reachability-based Trajectory Design (RTD) that replaces conservative offline reachable sets with fast online safety certification via mixed-monotone reachability ([immrax](https://github.com/gtfactslab/immrax)).
 
-Standard RTD computes parameterized Forward Reachable Sets (FRS) offline and uses them online to solve for collision-free trajectory parameters in real time. However, because high-fidelity system models are too expensive to compute reachable sets for, RTD relies on simplified models and must inflate the FRS to account for the resulting tracking error. This introduces conservatism — in many scenarios, RTD fails to find a safe trajectory even when one exists. Ignoring the tracking error (the `noerror` variant) gives the planner access to more aggressive trajectories but sacrifices safety guarantees. Moreover, offline FRS computations cannot account for runtime disturbances (wind, ice, slippage), so traditional RTD's safety guarantees are only as good as the assumptions made offline.
+RTD is a provably safe, real-time motion planning framework that precomputes Forward Reachable Sets (FRS) offline and uses them online to optimize for collision-free trajectories. The catch: because high-fidelity models are too expensive for reachable-set computation, RTD uses simplified models and inflates the FRS with worst-case tracking-error bounds. This makes the planner overly conservative — it rejects safe trajectories, triggers unnecessary braking, and cannot handle disturbances (wind, ice, slippage) that weren't anticipated offline.
 
-RTD-RAX closes both gaps with a three-stage online loop:
+`RTD-RAX` fixes this by splitting the problem: RTD's offline reachable sets handle fast candidate generation *without* conservative inflation, while a separate online verifier built on mixed-monotone reachability certifies each candidate under the actual measured uncertainty and disturbance bounds. If a candidate can't be certified safe, a repair procedure modifies it until a safe alternative is found.
 
-1. **Plan** with the less-conservative `noerror` FRS to find candidate trajectories.
-2. **Verify** each candidate using immrax interval-arithmetic reachability under the actual uncertainty and disturbance bounds.
-3. **Repair** any candidate flagged as unsafe via speed-backoff and CEGIS-style obstacle buffer tightening, then re-verify before execution.
-
-This produces trajectories that are both less conservative *and* formally verified safe under measured runtime conditions.
+1. **Plan** — use the uninflated FRS to rapidly generate candidate trajectories.
+2. **Verify** — certify each candidate online via mixed-monotone reachability under current conditions.
+3. **Repair** — if unsafe, modify the candidate and re-verify before execution.
 
 ## Key Results
 
