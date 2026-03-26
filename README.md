@@ -19,7 +19,7 @@ The arXiv preprint of the **`RTD-RAX`** paper [may be found here](https://arxiv.
         <img src="assets/gap_noerror_verify.png" height="250"><br>
       </td>
       <td align="center">
-        <img src="assets/angled_repair_view_two_repairs.gif" height="250"><br>
+        <img src="assets/angled_repair_view_two_repairs.gif" height="290"><br>
       </td>
     </tr>
   </table>
