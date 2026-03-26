@@ -13,8 +13,16 @@ The arXiv preprint of the **`RTD-RAX`** paper [may be found here](https://arxiv.
 
 
 <p align="center">
-  <img src="assets/gap_noerror_verify.png" height="250" alt="Narrow gap scenario">
-  <img src="assets/angled_repair_view_two_repairs.gif" height="250" alt="Repair scenario"><br>
+  <table>
+    <tr>
+      <td align="center">
+        <img src="assets/gap_noerror_verify.png" height="250"><br>
+      </td>
+      <td align="center">
+        <img src="assets/angled_repair_view_two_repairs.gif" height="250"><br>
+      </td>
+    </tr>
+  </table>
   <em>
     Left: Narrow gap scenario. Feasible parameter space <i>k</i> (safe: white, unsafe: red) with selected trajectory <i>k</i><sup>*</sup> in green, and certifiably safe trajectory through the gap. 
     Right: Online repair process under disturbance, showing successive trajectory corrections.
