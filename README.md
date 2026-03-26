@@ -6,7 +6,8 @@
 [![evannsmc.com](https://img.shields.io/badge/evannsmc.com-Project%20Portfolio-blue)](https://www.evannsmc.com)
 
 Official Documentation Website for this project [is found here](https://evannsm.github.io/ws_RTD).
-ArXiv preprint of the **`RTD-RAX`** paper [may be found here](https://arxiv.org/abs/2603.21635)
+
+ArXiv preprint of the **`RTD-RAX`** paper [may be found here](https://arxiv.org/abs/2603.21635).
 
 **`RTD-RAX`** is a runtime-assurance extension of Reachability-based Trajectory Design (RTD) that replaces conservative offline reachable sets with fast online safety certification via mixed-monotone reachability ([immrax](https://github.com/gtfactslab/immrax)).
 
