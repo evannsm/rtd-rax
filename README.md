@@ -54,10 +54,25 @@ RTD is a provably safe, real-time motion planning framework that precomputes For
 
 All case studies run inside a Docker container with pre-installed dependencies (JAX, immrax, matplotlib, etc.).
 
+### Option A: Pre-built Image (Fastest)
+
 ```bash
-cd docker/
+git clone https://github.com/evannsm/rtd-rax.git && cd rtd-rax/docker
+make pull             # pulls evannsmc/rtd-rax:latest from DockerHub
+make run_gui          # starts container with X11 forwarding for plots
+```
+
+### Option B: Build from Source
+
+```bash
+git clone https://github.com/evannsm/rtd-rax.git && cd rtd-rax/docker
 make build
 make run_gui          # starts container with X11 forwarding for plots
+```
+
+### Run Examples
+
+```bash
 make rtd-gap          # standard FRS — too conservative, no path found
 make rtd-gap FRS=noerror   # noerror FRS — feasible path found
 ```
@@ -187,7 +202,8 @@ See [`docker/README.md`](docker/README.md) for the full target and parameter ref
 
 | Command | Description |
 |---|---|
-| `make build` | Build the Docker image |
+| `make pull` | Pull pre-built image from DockerHub |
+| `make build` | Build the Docker image from source |
 | `make run` | Start container (headless) |
 | `make run_gui` | Start container with X11 forwarding |
 | `make start` | Restart a stopped container |

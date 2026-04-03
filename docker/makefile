@@ -1,4 +1,5 @@
 IMAGE_NAME=ws_rtd_jazzy
+DOCKERHUB_IMAGE=evannsmc/rtd-rax:latest
 CONTAINER_NAME=ws_rtd
 PROJECT_ROOT:=$(abspath ..)
 PYTHON ?= /opt/rtd-venv/bin/python
@@ -36,6 +37,14 @@ kill:
 
 attach:
 	docker exec -it --user $(DOCKER_USER) $(CONTAINER_NAME) bash
+
+pull:
+	docker pull $(DOCKERHUB_IMAGE)
+	docker tag $(DOCKERHUB_IMAGE) $(IMAGE_NAME)
+
+push:
+	docker tag $(IMAGE_NAME) $(DOCKERHUB_IMAGE)
+	docker push $(DOCKERHUB_IMAGE)
 
 rtd-numpy:
 	docker exec -it --user $(DOCKER_USER) $(CONTAINER_NAME) bash -lc "cd /workspace/ws_RTD/turtlebot_rtd_numpy && $(PYTHON) one_shot_rtd.py"

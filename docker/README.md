@@ -15,8 +15,19 @@ All RTD-RAX experiments run inside a Docker container with pre-installed depende
 
 ## Getting Started
 
+### Option A: Pre-built Image (Fastest)
+
+Pull the pre-built image from DockerHub — no build step required:
+
 ```bash
-make build       # build the Docker image
+make pull        # pulls evannsmc/rtd-rax:latest and tags it locally
+make run_gui     # start container with X11 forwarding for plots
+```
+
+### Option B: Build from Source
+
+```bash
+make build       # build the Docker image from the Dockerfile
 make run_gui     # start container with X11 forwarding for plots
 ```
 
@@ -36,7 +47,9 @@ xhost -local:docker
 
 | Command | Description |
 |---|---|
-| `make build` | Build the Docker image |
+| `make pull` | Pull pre-built image from DockerHub |
+| `make push` | Push local image to DockerHub (maintainer only) |
+| `make build` | Build the Docker image from source |
 | `make run` | Start container (headless) |
 | `make run_gui` | Start container with X11 forwarding |
 | `make start` | Restart a stopped container |
